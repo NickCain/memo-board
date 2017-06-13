@@ -1,9 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga'
+import throttle from 'lodash/throttle'
 
 import rootSaga from '../sagas';
-import rootReducer from '../reducers';
+import rootReducer, { persistedKeys } from '../reducers';
+import { saveState, loadState } from './persist-store';
+
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,8 +21,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default (initialState) => {
+  const persistedState = loadState();
 
-  const store = createStore(rootReducer, initialState, enhancer);
+  const store = createStore(rootReducer, { ...persistedState, ...initialState }, enhancer);
+
+  store.subscribe(throttle(() => {
+    saveState(store.getState(), persistedKeys);
+  }, 1000));
 
   sagaMiddleware.run(rootSaga);
 

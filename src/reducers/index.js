@@ -6,4 +6,6 @@ const rootReducer = combineReducers({
   [IDEAS_STATE_KEY]: ideaReducer
 });
 
+export const persistedKeys = [IDEAS_STATE_KEY];
+
 export default rootReducer;

@@ -8,7 +8,7 @@ export function* getNewIdea() {
 
   // MOCK - Mocked data for demo purposes
   const mockResponseNewIdea = {
-    id: uniqueId('idea_'),
+    id: uniqueId('idea_' + Math.random()),
     created_date: Date.now()
   };
 
