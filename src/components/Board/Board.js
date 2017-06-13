@@ -13,7 +13,7 @@ class Board extends Component {
   }
 
   render() {
-    const { ideasList, onUpdateIdea } = this.props;
+    const { ideasList, onUpdateIdea, onDeleteIdea } = this.props;
     return (
       <div className="Board">
         {
@@ -23,6 +23,7 @@ class Board extends Component {
               id={idea.id}
               createdDate={idea.created_date}
               onUpdateIdea={onUpdateIdea}
+              onDeleteIdea={onDeleteIdea}
               body={idea.body || 'text'}
               title={idea.title  || 'title'}
             />
@@ -34,6 +35,7 @@ class Board extends Component {
 }
 
 Board.propTypes = {
+  onDeleteIdea: PropTypes.func,
   onUpdateIdea: PropTypes.func,
   ideasList: PropTypes.arrayOf(
     PropTypes.shape({

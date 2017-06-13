@@ -7,10 +7,12 @@
     width: 100%;
     outline: 2px solid #000000;
     position: relative;
+    overflow: hidden;
 }
 
 .Idea .title {
     cursor: pointer;
+    word-wrap: break-word;
 }
 
 .Idea .input {
@@ -19,6 +21,9 @@
 
 .Idea .body {
     cursor: pointer;
-    display: flex;
-    justify-content: center;
+}
+
+.Idea .body .body-content {
+    font-size: 12px;
+    word-wrap: break-word;
 }

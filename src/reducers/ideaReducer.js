@@ -48,7 +48,7 @@ const ideaReducer = (state = initialState, action) => {
         ...state
       };
 
-    case actions.UPDATE_IDEA.SUCCESS:
+    case actions.UPDATE_IDEA.SUCCESS: {
       const { id, body, title } = action.response;
       const ideasList = [...state.ideasList];
 
@@ -63,6 +63,7 @@ const ideaReducer = (state = initialState, action) => {
         ...state,
         ideasList: newIdeasList
       };
+    }
 
     case actions.UPDATE_IDEA.FAILURE:
       return {
@@ -75,21 +76,12 @@ const ideaReducer = (state = initialState, action) => {
         ...state
       };
 
-    case actions.DELETE_IDEA.SUCCESS:
-      // const { id } = action.response;
-      // const ideasList = [...state.ideasList];
-      //
-      // const newIdeasList = ideasList.map(idea => {
-      //   if (idea.id === id) {
-      //     return update(idea, { $merge: { body, title } });
-      //   }
-      //   return idea;
-      // });
-
+    case actions.DELETE_IDEA.SUCCESS: {
       return {
         ...state,
-        ideasList: newIdeasList
+        ideasList: state.ideasList.filter(item => item.id !== action.response)
       };
+    }
 
     case actions.DELETE_IDEA.FAILURE:
       return {

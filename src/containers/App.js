@@ -26,13 +26,17 @@ class App extends Component {
     this.props.updateIdea(idea);
   };
 
+  handleDeleteIdea = (data) => {
+    this.props.deleteIdea(data);
+  };
+
   render() {
     const { getIdeasList } = this.props;
     console.log(getIdeasList);
     return (
       <div className="App">
         <TopNav btnText="Add Memo/Idea" onBtnClick={this.handleOnBtnClick}/>
-        <Board ideasList={getIdeasList} onUpdateIdea={this.handleUpdateIdea}/>
+        <Board ideasList={getIdeasList} onDeleteIdea={this.handleDeleteIdea} onUpdateIdea={this.handleUpdateIdea}/>
       </div>
     );
   }
@@ -40,8 +44,10 @@ class App extends Component {
 
 App.propTypes = {
   createNewIdea: PropTypes.func,
+  onDeleteIdea: PropTypes.func,
   getIdeas: PropTypes.func,
   getNewIdea: PropTypes.func,
+  deleteIdea: PropTypes.func,
   updateIdea: PropTypes.func,
   getIdeasList: PropTypes.arrayOf(
     PropTypes.shape({
@@ -64,6 +70,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateIdea: (data) => {
     dispatch(actions.updateIdea.request(data));
+  },
+  deleteIdea: (data) => {
+    dispatch(actions.deleteIdea.request(data));
   },
 });
 

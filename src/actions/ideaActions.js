@@ -11,7 +11,7 @@ export const IDEAS = {
 
 export const getIdeas = {
   request: () => action(IDEAS.REQUEST),
-  success: (response, params) => action(IDEAS.SUCCESS, { response, params}),
+  success: (response, params) => action(IDEAS.SUCCESS, { response, params }),
   failure: (error, params) => action(IDEAS.FAILURE, { error, params })
 };
 
@@ -26,7 +26,7 @@ export const NEW_IDEA = {
 
 export const newIdea = {
   request: () => action(NEW_IDEA.REQUEST),
-  success: (response, params) => action(NEW_IDEA.SUCCESS, { response, params}),
+  success: (response, params) => action(NEW_IDEA.SUCCESS, { response, params }),
   failure: (error, params) => action(NEW_IDEA.FAILURE, { error, params })
 };
 
@@ -56,6 +56,6 @@ export const DELETE_IDEA = {
 
 export const deleteIdea = {
   request: data => action(DELETE_IDEA.REQUEST, { data }),
-  success: (requestData, response) => action(DELETE_IDEA.SUCCESS, { requestData, response }),
+  success: (response) => action(DELETE_IDEA.SUCCESS, { response }),
   failure: error => action(DELETE_IDEA.FAILURE, { error })
 };

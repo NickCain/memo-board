@@ -1,8 +1,19 @@
-.textArea {
+.textArea-container {
+    position: relative;
+}
+
+.textArea-container .textArea {
     min-height: 80px;
     background: transparent;
 }
 
-.textArea:focus {
+.textArea-container .textArea:focus {
     outline: 2px solid #d3d3d3;
+}
+
+.textArea-container .count {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #45a4ff;
 }

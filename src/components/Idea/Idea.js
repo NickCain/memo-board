@@ -13,7 +13,7 @@ class Idea extends Component {
 
     this.state = {
       editTitle: true,
-      editBody: false,
+      editBody: true,
       showDelete: false
     };
   }
@@ -76,14 +76,15 @@ class Idea extends Component {
     });
   };
 
-  handleDeleteIdea = () => {
-    console.log('delete...')
-  };
-
   handleDeleteButton = () => {
     this.setState({
       showDelete: !this.state.showDelete
     })
+  };
+
+  handleDeleteButtonClick = () => {
+    const { id, onDeleteIdea } = this.props;
+    onDeleteIdea(id);
   };
 
   render() {
@@ -93,7 +94,7 @@ class Idea extends Component {
       <div className="Idea" onMouseEnter={this.handleDeleteButton} onMouseLeave={this.handleDeleteButton}>
         {
           showDelete &&
-          <DeleteIdeaButton onClick={this.handleDeleteIdea}/>
+          <DeleteIdeaButton onClick={this.handleDeleteButtonClick}/>
         }
         {
           editTitle ?
@@ -118,6 +119,7 @@ class Idea extends Component {
               onKeyPress={this.handleBodyInputKeyPress}
               onBlur={this.handleBodyInputOnBlur}
               text={body}
+              maxChars={140}
             />
             :
             <div
@@ -135,8 +137,12 @@ class Idea extends Component {
 }
 
 Idea.propTypes = {
+  id: PropTypes.string,
+  createdDate: PropTypes.number,
   title: PropTypes.string,
-  body: PropTypes.string
+  body: PropTypes.string,
+  onDeleteIdea: PropTypes.func,
+  onUpdateIdea: PropTypes.func
 };
 
 export default Idea;
