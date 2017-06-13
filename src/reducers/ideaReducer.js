@@ -70,6 +70,33 @@ const ideaReducer = (state = initialState, action) => {
         error: action.error
       };
 
+    case actions.DELETE_IDEA.REQUEST:
+      return {
+        ...state
+      };
+
+    case actions.DELETE_IDEA.SUCCESS:
+      // const { id } = action.response;
+      // const ideasList = [...state.ideasList];
+      //
+      // const newIdeasList = ideasList.map(idea => {
+      //   if (idea.id === id) {
+      //     return update(idea, { $merge: { body, title } });
+      //   }
+      //   return idea;
+      // });
+
+      return {
+        ...state,
+        ideasList: newIdeasList
+      };
+
+    case actions.DELETE_IDEA.FAILURE:
+      return {
+        ...state,
+        error: action.error
+      };
+
 
     default:
       return state;

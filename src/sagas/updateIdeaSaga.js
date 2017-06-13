@@ -8,7 +8,7 @@ export function* postUpdateIdea(requestData) {
   // MOCK - Mocked data for demo purposes
   const mockResponseUpdateIdea = {
     id: requestBody.requestData.id,
-    created_date: requestBody.requestData.createdDate,
+    created_date: requestBody.requestData.created_date,
     body: requestBody.requestData.body,
     title: requestBody.requestData.title
   };

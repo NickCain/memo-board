@@ -44,3 +44,18 @@ export const updateIdea = {
   success: (requestData, response) => action(UPDATE_IDEA.SUCCESS, { requestData, response }),
   failure: error => action(UPDATE_IDEA.FAILURE, { error })
 };
+
+// DELETE IDEA
+
+const DELETE_IDEA_BASE = 'DELETE_IDEA_';
+export const DELETE_IDEA = {
+  REQUEST: DELETE_IDEA_BASE + REQUEST,
+  SUCCESS: DELETE_IDEA_BASE + SUCCESS,
+  FAILURE: DELETE_IDEA_BASE + FAILURE
+};
+
+export const deleteIdea = {
+  request: data => action(DELETE_IDEA.REQUEST, { data }),
+  success: (requestData, response) => action(DELETE_IDEA.SUCCESS, { requestData, response }),
+  failure: error => action(DELETE_IDEA.FAILURE, { error })
+};

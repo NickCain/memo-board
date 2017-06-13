@@ -70,7 +70,7 @@ class Idea extends Component {
 
     this.props.onUpdateIdea({
       id,
-      createdDate,
+      created_date: createdDate,
       title: update.type === 'title' ? update.text : title,
       body: update.type === 'body' ? update.text : body,
     });
