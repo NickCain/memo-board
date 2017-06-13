@@ -1,0 +1,10 @@
+.DeleteIdeaButton {
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.DeleteIdeaButton:hover {
+    color: #FF0000;
+}

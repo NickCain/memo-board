@@ -18,7 +18,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default (initialState) => {
-  // const store = createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware), enhancers);
 
   const store = createStore(rootReducer, initialState, enhancer);
 

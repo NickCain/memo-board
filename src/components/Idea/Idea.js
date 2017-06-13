@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import Input from '../../components/common/Input/Input';
 import TextArea from '../../components/common/TextArea/TextArea';
+import DeleteIdeaButton from '../../components/DeleteIdeaButton/DeleteIdeaButton';
 
 import './Idea.css';
 
@@ -12,7 +13,8 @@ class Idea extends Component {
 
     this.state = {
       editTitle: true,
-      editBody: false
+      editBody: false,
+      showDelete: false
     };
   }
 
@@ -74,11 +76,25 @@ class Idea extends Component {
     });
   };
 
+  handleDeleteIdea = () => {
+    console.log('delete...')
+  };
+
+  handleDeleteButton = () => {
+    this.setState({
+      showDelete: !this.state.showDelete
+    })
+  };
+
   render() {
     const { title, body } = this.props;
-    const { editTitle, editBody } = this.state;
+    const { editTitle, editBody, showDelete } = this.state;
     return (
-      <div className="Idea">
+      <div className="Idea" onMouseEnter={this.handleDeleteButton} onMouseLeave={this.handleDeleteButton}>
+        {
+          showDelete &&
+          <DeleteIdeaButton onClick={this.handleDeleteIdea}/>
+        }
         {
           editTitle ?
             <Input
