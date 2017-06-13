@@ -3,6 +3,12 @@ import get from 'lodash/get';
 
 import * as actions from '../actions';
 
+export const REQUEST_STATUS = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILURE: 'FAILURE'
+};
+
 const initialState = {
   ideasList: []
 };
@@ -45,7 +51,8 @@ const ideaReducer = (state = initialState, action) => {
 
     case actions.UPDATE_IDEA.REQUEST:
       return {
-        ...state
+        ...state,
+        status: REQUEST_STATUS.PENDING
       };
 
     case actions.UPDATE_IDEA.SUCCESS: {
@@ -61,14 +68,16 @@ const ideaReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        ideasList: newIdeasList
+        ideasList: newIdeasList,
+        status: REQUEST_STATUS.SUCCESS
       };
     }
 
     case actions.UPDATE_IDEA.FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        status: REQUEST_STATUS.FAILURE
       };
 
     case actions.DELETE_IDEA.REQUEST:
@@ -99,5 +108,6 @@ export const IDEAS_STATE_KEY = 'ideasState';
 
 // Selectors
 export const getIdeas = state => get(state, [IDEAS_STATE_KEY, 'ideasList']);
+export const getRequestStatus = state => get(state, [IDEAS_STATE_KEY, 'status']);
 
 export default ideaReducer;

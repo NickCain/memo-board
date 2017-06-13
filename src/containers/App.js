@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import keys from 'lodash/keys';
 
 import * as actions from '../actions';
 
 // Selectors
-import { getIdeas } from '../reducers/ideaReducer';
+import { getIdeas, getRequestStatus, REQUEST_STATUS } from '../reducers/ideaReducer';
 
 import './App.css';
 
 import TopNav from '../components/TopNav/TopNav';
 import Board from '../components/Board/Board';
+import Notification from '../components/common/Notification/Notification';
 
 class App extends Component {
 
@@ -31,10 +33,13 @@ class App extends Component {
   };
 
   render() {
-    const { getIdeasList } = this.props;
-    console.log(getIdeasList);
+    const { getIdeasList, getRequestStatus } = this.props;
     return (
       <div className="App">
+        {
+          getRequestStatus === REQUEST_STATUS.SUCCESS &&
+            <Notification message='Successfully saved memo/idea' duration={3000} openNotification={true} />
+        }
         <TopNav btnText="Add Memo/Idea" onBtnClick={this.handleOnBtnClick}/>
         <Board ideasList={getIdeasList} onDeleteIdea={this.handleDeleteIdea} onUpdateIdea={this.handleUpdateIdea}/>
       </div>
@@ -54,11 +59,14 @@ App.propTypes = {
       id: PropTypes.string,
       created_date: PropTypes.number
     })
-  )
+  ),
+  getRequestStatus: PropTypes.oneOf(keys(REQUEST_STATUS))
 };
 
 const mapStateToProps = store => ({
-  getIdeasList: getIdeas(store)
+  getIdeasList: getIdeas(store),
+  getRequestStatus: getRequestStatus(store)
+
 });
 
 const mapDispatchToProps = dispatch => ({
