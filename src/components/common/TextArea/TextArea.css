@@ -1,0 +1,8 @@
+.textArea {
+    min-height: 85px;
+    background: transparent;
+}
+
+.textArea:focus{
+    outline: 2px solid #d3d3d3;
+}

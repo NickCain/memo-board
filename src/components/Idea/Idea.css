@@ -1,0 +1,23 @@
+.Idea {
+    max-width: 140px;
+    height: 140px;
+    margin: 10px;
+    padding: 5px;
+    flex-grow: 1;
+    width: 100%;
+    outline: 2px solid #000000;
+}
+
+.Idea .title {
+    cursor: pointer;
+}
+
+.Idea .input {
+    margin: 10px;
+}
+
+.Idea .body {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
