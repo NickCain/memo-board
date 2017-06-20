@@ -9,6 +9,8 @@ This project uses:
 - Redux
 - Redux Sagas
 - Webpack 2
+- JEST
+- Enzyme
 
 ##Usage
 
